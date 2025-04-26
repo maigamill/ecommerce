@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container">
+    <a class="navbar-brand fs-3 fw-bolder text-capitalize" routerLink="home">trendy store</a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <!-- ✅ Links وسط -->
+      <ul class="navbar-nav mt-2 mx-auto ">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="home" routerLinkActive="active-link">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="products" routerLinkActive="active-link">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="category" routerLinkActive="active-link">Category</a>
+        </li>
+      </ul>
+
+      <!-- ✅ Links يمين -->
+      <ul class="navbar-nav  align-items-md-start ">
+
+        
+        <li class="nav-item position-relative cartLi">
+          <a class="nav-link" routerLink="cart" routerLinkActive="active-link">
+            <i class="fa-solid fa-xl fa-cart-shopping"></i>
+            <span class="badge bg-info position-absolute top-0 start-0">{{ cartCount }}</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fw-bolder cursor-pointer" (click)="logOut()">Sign Out</a>
+        </li>
+
+
+      </ul>
+    </div>
+  </div>
+</nav>

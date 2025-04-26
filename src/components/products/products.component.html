@@ -1,0 +1,57 @@
+<section class="mb-3">
+  <h4 class="mt-4 fw-bold">All Products:</h4>
+ 
+   
+   <div class="row g-3 my-2">
+     <div
+       *ngFor="let product of productsList  | paginate: { id: 'productPagination',
+       itemsPerPage: pageSize,
+       currentPage: currentPage,
+       totalItems: totalPages }"
+       class="col-12 col-sm-6 col-md-4 col-lg-3"
+     >
+       <div class="product p-2">
+       
+         <div [routerLink]="['/details', product.id]">
+           <img
+             [src]="product.imageCover"
+             class="w-100"
+             [alt]="product.title"
+           />
+           <h2 class="small text-main fw-bolder mt-2">
+             {{ product.category.name | uppercase }}
+           </h2>
+           <h6>{{ product.title.split(' ', 2).join(' ') }}</h6>
+           <div class="d-flex justify-content-between align-items-center">
+             <span>{{ product.price }}EGP</span>
+             <div>
+               <ng-container *ngFor="let num of [1,2,3,4,5].slice(0, product.ratingsAverage); let i = index">
+                 <span><i class="fas fa-star rating-color"></i></span>
+               </ng-container>
+               <ng-container *ngIf="product.ratingsAverage % 1 !== 0">
+                 <i class="fa-solid fa-star-half-stroke rating-color"></i>
+               </ng-container>
+               <span class="text-muted">{{ product.ratingsAverage }}</span>
+             </div>
+           </div>
+         </div>
+         <button class="btn-main w-100 mt-2" (click)="addCart(product.id)">
+           Add to cart
+         </button>
+       </div>
+     </div>
+   </div>
+ 
+   <!-- ✅ Pagination Controls -->
+   <div class="d-flex justify-content-center mt-4">
+      <pagination-controls
+     (pageChange)="onPageChanged($event)"
+     [id]="'productPagination'"
+     [responsive]="true"
+     [autoHide]="true"
+     previousLabel="«"
+     nextLabel="»"
+   ></pagination-controls>
+   </div>
+ </section>
+ 
